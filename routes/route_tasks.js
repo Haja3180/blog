@@ -7,9 +7,9 @@ export const task_router = new express.Router()
 // -------------------- CREATE ---------------------
 //route + AJOUT tâche à l'aide requete http POST via http://localhost:4000/task
 task_router.post('/task', async(req, res) => {
-    console.log(req.body)
     // fonction pour ajouter une tâche
     const task = new Task(req.body)
+    console.log(task)
     try{
         await task.save()
         res.status(201).send(task)
@@ -68,16 +68,18 @@ task_router.delete('/task/:id', async(req, res) => {
     // fonction pour supprimer une tâche
     try{
         const to_be_deleted_task = await Task.findById(id)
-        if (!to_be_deleted_task){
-            res.status(400).send('Cet Id n\'existe pas !')
-        }else{
-            await to_be_deleted_task.deleteOne()
-            res.status(201).send('Elément supprimé !')
-
-        }
+        console.log(to_be_deleted_task)
+        await to_be_deleted_task.deleteOne()
+        res.status(201).send('Elément supprimé !')
+        // if (!to_be_deleted_task){
+        //     res.status(400).send('Cet Id n\'existe pas !')
+        // }else{
+        //     await to_be_deleted_task.deleteOne()
+        //     res.status(201).send('Elément supprimé !')
+        // }
     }
     catch(e){
-        res.status(400).send(e)   
+        res.status(400).send('L\'erreur suivante a été détectée : ' + e )   
     }
 })
 //-----------------------------------------------------
