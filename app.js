@@ -1,70 +1,23 @@
 import express from "express"
-// import mongoose from "mongoose";
-
-//lancement bd 
 import {db} from './mongodb.js'
-import { User } from "./model/users.js";
-import { Task } from "./model/tasks.js";
-import { task_router } from "./routes/tasks.js";
-// import { route } from "./routes/routes.js";
+import { task_router } from "./routes/route_tasks.js"
+import { user_router } from "./routes/route_users.js"
 db();
 
-
+//initialisation serveur express (cf. docs expressJS https://expressjs.com/en/starter/hello-world.html)
 const app = express();
 const port = 4000;
 
-//spécifie qu'on utilise du json
+//spécifie à l'app qu'on utilise du json
 app.use(express.json())
+
+//spécifie à l'app d'utiliser la route tasks (incluant la f° d'ajout de tâche)
 app.use(task_router)
-//fonction pour ajouter un user
-const addUser = async (req, res)=>{
-    const user = new User(req.body)
-    try{
-        await user.save()
-        res.status(201).send(user)
-    }
-    catch(e){
-        res.status(400).send(e)   
-    }
-}
-//fonction pour supprimer un user
 
+//spécifie à l'app d'utiliser la route users (incluant la f° d'ajout de user)
+app.use(user_router)
 
-// // fonction pour ajouter une tâche
-// const addTask = async (req, res)=>{
-//     const task = new Task(req.body)
-//     try{
-//         await task.save()
-//         res.status(201).send(task)
-//     }
-//     catch(e){
-//         res.status(400).send(e)   
-//     }
-// }
-
-
-
-//pour requete http post de user via http://localhost:4000/user
-app.post('/user', async(req, res) => {
-    console.log(req.body)
-    addUser(req, res);
-})
-
-// //pour requete http post de task via http://localhost:4000/task
-// app.post('/task', async(req, res) => {
-//     console.log(req.body)
-//     addTask(req, res);
-// })
-
-
-
-
-//route
-app.get('/', (req, res) => {
-    res.send('Task and user manager')
-})
-
-// toujours mettre à la fin : écouter sur le port
+// spécifie à l'app d'écouter sur le port (toujours mettre à la fin) (cf. docs expressJS https://expressjs.com/en/starter/hello-world.html)
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 }

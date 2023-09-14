@@ -1,5 +1,4 @@
 //initialisation de la bdd 
-
 import mongoose from "mongoose";
 export const db = async () => {
     try {
