@@ -1,5 +1,7 @@
+//app
+
 import express from "express"
-import {db} from './mongodb.js'
+import {db} from './db/mongodb.js'
 import { task_router } from "./routes/route_tasks.js"
 import { user_router } from "./routes/route_users.js"
 db();
