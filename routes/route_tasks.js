@@ -9,7 +9,7 @@ export const task_router = new express.Router()
 task_router.post('/task', async(req, res) => {
     // fonction pour ajouter une tâche
     const task = new Task(req.body)
-    console.log(task)
+    console.log('Création OK :', task)
     try{
         await task.save()
         res.status(201).send(task)
@@ -26,11 +26,10 @@ task_router.post('/task', async(req, res) => {
 //route + LECTURE tâche à l'aide requete http GET via http://localhost:4000/task
 task_router.get('/task/:id', async(req, res) => {
     // fonction pour lire une tâche
-    const id = req.params.id
-    console.log(id)
     try{
-        const searched_task = await Task.findById (id)
+        const searched_task = await Task.findById (req.params.id)
         res.status(201).send(searched_task)
+        console.log('Lecture OK :', searched_task)
     }
     catch(e){
         res.status(400).send(e)   
@@ -43,7 +42,7 @@ task_router.get('/task/:id', async(req, res) => {
 // -------------------- UPDATE ------------------------
 // route + MAJ tâche à l'aide requete http PATCH via http://localhost:4000/task
 task_router.patch('/task/:id', async(req, res) => {
-    //parcourir les MAJ avec ce qu'il y a dans le body et resauvegarder
+    //fonction pour MAJ tâche
     const id = req.params.id
     console.log(id)
     try{
