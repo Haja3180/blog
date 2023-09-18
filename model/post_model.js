@@ -7,9 +7,12 @@ const postschema = new mongoose.Schema({
         required: true
         // trim: true
     }, 
-    completed: {
-        type: Boolean,
-        default: false
+    post_author: {
+        type: String,
+        required: true
+    },
+    post_likers: {
+        type: [String]
     }
 });
 
