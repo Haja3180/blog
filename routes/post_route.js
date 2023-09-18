@@ -1,6 +1,6 @@
 //CRUD post
 import  express from "express";
-import { Post } from "../model/posts.js";
+import { Post } from "../model/post_model.js";
 
 export const post_router = new express.Router()
 

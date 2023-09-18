@@ -2,8 +2,8 @@
 
 import express from "express" //imporation du module express selon docs https://expressjs.com/en/starter/hello-world.html
 import { connect_db } from './db/db_connection.js'
-import { post_router } from "./routes/route_posts.js"
-import { user_router } from "./routes/route_users.js"
+import { post_router } from "./routes/post_route.js"
+import { user_router } from "./routes/user_route.js"
 connect_db();
 
 //initialisation serveur express (cf. docs expressJS https://expressjs.com/en/starter/hello-world.html)
