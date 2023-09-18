@@ -1,7 +1,7 @@
 import { Post } from "../models/post_model.js"
 
 
-//contrôleur CREATE pour création d'un post (au sens post d'un blog)
+//contrôleur CREATE (pour création d'un post (au sens post d'un blog))
 export const setPosts = async (req, res) => {           //export de setPosts pour utilisation dans la route (post_route.js)
     const post = new Post(req.body)                     //instanciation d'un post à partir de la classe Post
     console.log('instanciation OK :', post)
@@ -51,14 +51,22 @@ export const deletePosts = async(req, res) => {
         console.log(to_be_deleted_post)
         await to_be_deleted_post.deleteOne()
         res.status(201).send('Elément supprimé !')
-        // if (!to_be_deleted_post){
-        //     res.status(400).send('Cet Id n\'existe pas !')
-        // }else{
-        //     await to_be_deleted_post.deleteOne()
-        //     res.status(201).send('Elément supprimé !')
-        // }
     }
     catch(e){
         res.status(400).send('L\'erreur suivante a été détectée : ' + e )   
+    }
+}
+
+//liker un post
+export const likePosts = async (req, res) => {
+    try{
+        const like_post = await Post.findByIdAndUpdate(
+            req.params.id, 
+            {$addToSet: {post_likers: req.body.likerId}},
+            {new:true})
+        .then((data) => res.status(201).send(data))
+    
+    }catch(e){
+        res.status(400).send('erreur :' + e)
     }
 }

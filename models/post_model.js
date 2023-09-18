@@ -27,7 +27,7 @@ const postschema = new mongoose.Schema(
     }
     );
 
-//definition de notre model à enregistrer
+//definition du model à enregistrer
 export const Post = mongoose.model('Post', postschema);
 
 

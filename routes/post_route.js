@@ -1,6 +1,6 @@
 //spécification des routes posts
 import  express from "express";
-import { deletePosts, readPosts, setPosts, updatePosts } from "../controllers/post_controller.js";
+import { deletePosts, likePosts, readPosts, setPosts, updatePosts } from "../controllers/post_controller.js";
 
 export const post_router = new express.Router()
 
@@ -15,4 +15,7 @@ post_router.patch('/post/:id', updatePosts)
 
 //route pour suppression de post (DELETE)
 post_router.delete('/post/:id', deletePosts)
+
+// route pour liker post (opération de type UPDATE)
+post_router.patch('/like-post/:id', likePosts)
 
