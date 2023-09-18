@@ -1,8 +1,8 @@
-//initialisation de la bdd 
+//connexion à la BDD avec mongoose
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 dotenv.config()
-export const db = async () => {
+export const connect_db = async () => {
     try {
         await mongoose.connect(process.env.DB_URI, {})
     }
