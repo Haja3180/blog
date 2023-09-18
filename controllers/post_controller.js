@@ -57,12 +57,26 @@ export const deletePosts = async(req, res) => {
     }
 }
 
-//liker un post
+//liker un post (update)
 export const likePosts = async (req, res) => {
     try{
         const like_post = await Post.findByIdAndUpdate(
             req.params.id, 
             {$addToSet: {post_likers: req.body.likerId}},
+            {new:true})
+        .then((data) => res.status(201).send(data))
+    
+    }catch(e){
+        res.status(400).send('erreur :' + e)
+    }
+}
+
+//disliker un post (update)
+export const dislikePosts = async (req, res) => {
+    try{
+        const like_post = await Post.findByIdAndUpdate(
+            req.params.id, 
+            {$pull: {post_likers: req.body.dislikerId}},
             {new:true})
         .then((data) => res.status(201).send(data))
     
