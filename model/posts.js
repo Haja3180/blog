@@ -1,8 +1,8 @@
-//Task model
+//post model
 import mongoose from 'mongoose';
 
-const taskSchema = new mongoose.Schema({
-    task_title: {
+const postschema = new mongoose.Schema({
+    post_title: {
         type: String,
         required: true
         // trim: true
@@ -14,6 +14,6 @@ const taskSchema = new mongoose.Schema({
 });
 
 //definition de notre model à enregistrer
-export const Task = mongoose.model('Task', taskSchema);
+export const Post = mongoose.model('Post', postschema);
 
 
