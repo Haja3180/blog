@@ -9,9 +9,10 @@ export const task_router = new express.Router()
 task_router.post('/task', async(req, res) => {
     // fonction pour ajouter une tâche
     const task = new Task(req.body)
-    console.log('Création OK :', task)
+    console.log('instanciation OK :', task)
     try{
         await task.save()
+        console.log('saugarde en base OK ! :', task)
         res.status(201).send(task)
     }
     catch(e){
