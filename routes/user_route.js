@@ -2,9 +2,7 @@
 import  express from "express";
 import { deleteUsers, readUsers, setUsers, updateUsers } from "../controllers/user_controller.js";
 
-
 export const user_router = new express.Router()
-
 
 //route pour ajout user (CREATE)
 user_router.post('/user', setUsers)
