@@ -11,7 +11,7 @@ post_router.post('/post', setPosts)
 post_router.get('/post/:id', readPosts)
 
 // route pour update de post (UPDATE)
-post_router.patch('/post/:id', updatePosts)
+post_router.put('/post/:id', updatePosts)
 
 //route pour suppression de post (DELETE)
 post_router.delete('/post/:id', deletePosts)

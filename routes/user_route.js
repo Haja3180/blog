@@ -13,7 +13,7 @@ user_router.post('/user', setUsers)
 user_router.get('/user/:id', readUsers)
 
 // route pour update de user (UPDATE)
-user_router.patch('/user/:id', updateUsers)
+user_router.put('/user/:id', updateUsers)
 
 //route pour suppression de user (DELETE)
 user_router.delete('/user/:id', deleteUsers)
