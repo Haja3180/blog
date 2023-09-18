@@ -1,4 +1,4 @@
-//connexion à la BDD avec mongoose
+//connexion à la BDD avec l'ORM mongoose
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 dotenv.config()

@@ -1,6 +1,6 @@
 //CRUD user
 import  express from "express";
-import { User } from "../model/user_model.js";
+import { User } from "../models/user_model.js";
 
 
 export const user_router = new express.Router()
